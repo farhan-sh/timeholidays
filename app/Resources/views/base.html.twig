@@ -1,13 +1,186 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <head>        
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta name="keywords" content="Time Holidays" />
+        <meta name="description" content="Time Holidays">
+        <meta name="author" content="Tsoy">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Time Holidays{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheets" href="{{ asset('bundles/app/css/style2.css')}}" />             
+            <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600' rel='stylesheet' type='text/css'>           
+            <link rel="stylesheet" href="{{asset('bundles/app/css/bootstrap.css')}}"/>
+            <link rel="stylesheet" href="{{asset('bundles/app/css/font-awesome.css')}}">
+            <link rel="stylesheet" href="{{asset('bundles/app/css/icomoon.css')}}">
+            <link rel="stylesheet" href="{{asset('bundles/app/css/styles.css')}}">
+            <link rel="stylesheet" href="{{asset('bundles/app/css/mystyles.css')}}">
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{asset('bundles/app/js/modernizr.js')}}"></script>
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />               
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    <body>        
+            <!-- FACEBOOK WIDGET -->
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- /FACEBOOK WIDGET -->
+    <div class="global-wrap">
+        <header id="main-header">
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a class="logo" href="{{path('home')}}">
+                                <img src="{{asset('bundles/app/img/logo.jpg')}}" alt="Time Holidays" title="Time Holidays" style="width:150px;height:90px "/>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <address>
+                                <span style="text-decoration: underline"><strong>24/7 Customer Support</strong></span><br/>
+                                <i class="fa fa-phone-square"></i> 1300 13 45 56<br/>
+                                <i class="fa fa-phone-square"></i> 0403477442<br/>
+                                <i class="fa fa-envelope-square"></i> info@timeholidays.com.au<br/>
+                            </address>
+                            
+                        </div>
+                        <div class="col-md-3 col-md-offset-2">
+                            <form class="main-header-search">
+                                <div class="form-group form-group-icon-left">
+                                    <i class="fa fa-search input-icon"></i>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </form>
+                        </div>             
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="nav">
+                    <ul class="slimmenu" id="slimmenu">
+                        <li class="active"><a href="{{path('home')}}">Home</a>                           
+                        </li>
+                        <li ><a href="{{path('home')}}">Flights</a>                           
+                        </li>
+                        <li ><a href="{{path('home')}}">Hotels</a>                           
+                        </li>
+                        <li><a href="{{path('home')}}">Umrah</a>                           
+                        </li>
+                        <li ><a href="{{path('home')}}">Excess Baggage</a>                           
+                        </li>
+                        <li><a href="{{path('home')}}">Essentials</a>   
+                            <ul>
+                                <li><a href="#">Airport Transfer</a>
+                                </li>
+                                <li><a href="#">Airport Parking</a>
+                                </li>
+                            </ul>                                        
+                        </li>
+                        <li><a href="{{path('home')}}">Travel Shop</a>                           
+                        </li>
+                        <li ><a href="{{path('home')}}">Events</a>                           
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </header>         
+        {% block contents%}
+        {% endblock %}    
+         <footer id="main-footer">
+            <div class="container">
+                <div class="row row-wrap">
+                    <div class="col-md-3">
+                        <a class="logo" href="index.html">
+                            <img src="{{asset('bundles/app/img/logo.jpg')}}" alt="Time Holidays" title="Time Holidays" style="width:150px;height:90px "/>
+                        </a>
+                        <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
+                        <ul class="list list-horizontal list-space">
+                            <li>
+                                <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h4>Newsletter</h4>
+                        <form>
+                            <label>Enter your E-mail Address</label>
+                            <input type="text" class="form-control">
+                            <p class="mt5"><small>*We Never Send Spam</small>
+                            </p>
+                            <input type="submit" class="btn btn-primary" value="Subscribe">
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="list list-footer">
+                            <li><a href="#">About US</a>
+                            </li>
+                            <li><a href="#">Terms and Conditions</a>
+                            </li>
+                            <li><a href="#">Privacy Policy</a>
+                            </li>
+                            <li><a href="#">Payment Methods</a>
+                            </li>
+                            <li><a href="#">Travel Blog</a>
+                            </li>
+                            <li><a href="#">Feedback</a>
+                            </li>                            
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Have Questions?</h4>
+                        <h4 class="text-color">1300 13 45 56</h4>
+                        <h4 class="text-color">0403477442</h4>
+                        <h4><a href="mailto:info@timeholidays.com.au" class="text-color">info@timeholidays.com.au</a></h4>
+                        <p>24/7 Dedicated Customer Support</p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        <script src="{{asset('bundles/app/js/jquery.js')}}"></script>
+        <script src="{{asset('bundles/app/js/bootstrap.js')}}"></script>
+        <script src="{{asset('bundles/app/js/slimmenu.js')}}"></script>
+        <script src="{{asset('bundles/app/js/bootstrap-datepicker.js')}}"></script>
+        <script src="{{asset('bundles/app/js/bootstrap-timepicker.js')}}"></script>
+        <script src="{{asset('bundles/app/js/nicescroll.js')}}"></script>
+        <script src="{{asset('bundles/app/js/dropit.js')}}"></script>
+        <script src="{{asset('bundles/app/js/ionrangeslider.js')}}"></script>
+        <script src="{{asset('bundles/app/js/icheck.js')}}"></script>
+        <script src="{{asset('bundles/app/js/fotorama.js')}}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="{{asset('bundles/app/js/typeahead.js')}}"></script>
+        <script src="{{asset('bundles/app/js/card-payment.js')}}"></script>
+        <script src="{{asset('bundles/app/js/magnific.js')}}"></script>
+        <script src="{{asset('bundles/app/js/owl-carousel.js')}}"></script>
+        <script src="{{asset('bundles/app/js/fitvids.js')}}"></script>
+        <script src="{{asset('bundles/app/js/tweet.js')}}"></script>
+        <script src="{{asset('bundles/app/js/countdown.js')}}"></script>
+        <script src="{{asset('bundles/app/js/gridrotator.js')}}"></script>
+        <script src="{{asset('bundles/app/js/custom.js')}}"></script>
+    </div>
     </body>
 </html>
