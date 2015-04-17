@@ -117,17 +117,6 @@
                             </li>
                         </ul>
                     </div>
-
-                    <div class="col-md-3">
-                        <h4>Newsletter</h4>
-                        <form>
-                            <label>Enter your E-mail Address</label>
-                            <input type="text" class="form-control">
-                            <p class="mt5"><small>*We Never Send Spam</small>
-                            </p>
-                            <input type="submit" class="btn btn-primary" value="Subscribe">
-                        </form>
-                    </div>
                     <div class="col-md-2">
                         <ul class="list list-footer">
                             <li><a href="#">About US</a>
@@ -143,16 +132,28 @@
                             <li><a href="#">Feedback</a>
                             </li>                            
                         </ul>
-                    </div>
+                    </div>                    
                     <div class="col-md-4">
                         <h4>Have Questions?</h4>
-                        <h4 class="text-color">1300 13 45 56</h4>
-                        <h4 class="text-color">0403477442</h4>
-                        <h4><a href="mailto:info@timeholidays.com.au" class="text-color">info@timeholidays.com.au</a></h4>
-                        <p>24/7 Dedicated Customer Support</p>
-                    </div>
-
+                        <h4 class="text-color"><i class="fa fa-phone"></i> 1300 13 45 56</h4>
+                        <h4 class="text-color"><i class="fa fa-mobile"></i>  0403477442</h4>
+                        <h4 class="text-color"><i class="fa fa-envelope"></i> <a href="mailto:info@timeholidays.com.au" class="text-color">info@timeholidays.com.au</a></h4>                       
+                    </div>    
+                    <div class="col-md-3">
+                        <img src="{{asset('bundles/app/img/payment.png')}}" style="height: 120px"/>
+                        <h4>Newsletter</h4>
+                        <form>                            
+                            <input type="text" class="form-control" placeholder="your@email.com"  />
+                            <p class="mt5"><i><small><span style="color:#007041 !important">*We Never Send Spam</span></small></i>
+                            </p>
+                            <input type="submit" class="btn btn-primary" value="Subscribe">
+                        </form>
+                    </div>                    
                 </div>
+                <div class="row">
+                    <h6 style="text-align:center"><i>&copy;Time Holidays Pty Ltd. Australia, ABN:59141100745</i></h6>
+                    <h6 style="text-align: center"><i><a href="{{path('home')}}">www.timeholidays.com.au</a>.All Rights Reserved</i></h6>
+                </div>        
             </div>
         </footer>
         <script src="{{asset('bundles/app/js/jquery.js')}}"></script>
