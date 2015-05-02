@@ -145,7 +145,7 @@ function hideMulti(num){
             <ul class="nav nav-pills nav-sm nav-no-br mb10" id="flightChooseTab">
                 <li class="active"><a href="#air_round_trip" data-toggle="tab">Round Trip</a>
                 </li>
-                <li><a href="#flight-search-2" data-toggle="tab">One Way</a>
+                <li><a href="#air_one_way" data-toggle="tab">One Way</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -211,72 +211,68 @@ function hideMulti(num){
                         </div>                      
                     </div>
                     <div class="row" style="margin-bottom: 20px;"></div>
+                    <button class="btn btn-primary btn-lg rs_search" type="submit">Search for Flights</button>
                 </div>
-                <div class="tab-pane fade" id="flight-search-2">
+                <div class="tab-pane fade" id="air_one_way">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
                                         <label>From</label>
-                                        <input class="typeahead form-control" placeholder="City, Airport, U.S. Zip" type="text" />
+                                        <input class="form-control from autosuggest rs_from" name="rs_o_city1"  placeholder="City, Airport, U.S. Zip" onclick='$(this).val("");' autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
                                         <label>To</label>
-                                        <input class="typeahead form-control" placeholder="City, Airport, U.S. Zip" type="text" />
+                                        <input class="form-control to autosuggest rs_to" name="rs_d_city1" placeholder="City, Airport, U.S. Zip" onclick='$(this).val("");' autocomplete="off" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="input-daterange" data-date-format="M d, D">
+                            <div class="input-daterange" data-date-format="mm/dd/yyy">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
-                                            <label>Departing</label>
-                                            <input class="date-pick form-control" data-date-format="M d, D" type="text" />
+                                            <label>Departing</label>                                            
+                                            <input name="rs_chk_in1" class="form-control rs_chk_in" value="mm/dd/yyyy">
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group form-group-lg form-group-select-plus">
-                                            <label>Passngers</label>
-                                            <div class="btn-group btn-group-select-num" data-toggle="buttons">
-                                                <label class="btn btn-primary active">
-                                                    <input type="radio" name="options" />1</label>
-                                                <label class="btn btn-primary">
-                                                    <input type="radio" name="options" />2</label>
-                                                <label class="btn btn-primary">
-                                                    <input type="radio" name="options" />3</label>
-                                                <label class="btn btn-primary">
-                                                    <input type="radio" name="options" />3+</label>
-                                            </div>
-                                            <select class="form-control hidden">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option selected="selected">4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                                <option>11</option>
-                                                <option>12</option>
-                                                <option>13</option>
-                                                <option>14</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    </div>                           
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Adults(18+)</label>
+                                    <select name="rs_adults" class="form-control rs_adults_input pax">
+                                    </select>
+                                </div>  
+                                 <div class="col-md-4">
+                                        <label>Children(2-17)</label>                                       
+                                        <select name="rs_children" class="form-control rs_child_input pax">
+					</select>
+                                </div>  
+                                <div class="col-md-4">
+                                        <label>Cabin Class</label>
+                                        <select name="rs_cabin" class="form-control rs_child_input pax">
+						<option value=''>Economy/Coach</option>
+						<option value='Business'>Business</option>
+						<option value='First'>First</option>
+					</select>
+                                </div>                                 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg rs_search  rs_oneway_search" type="submit">Search for Flights</button>
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary btn-lg rs_search" type="submit">Search for Flights</button>
+        
     </form>
 </div>
