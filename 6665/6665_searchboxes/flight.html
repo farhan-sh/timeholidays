@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	
+<title></title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/rs_searchbox.css">
+<link rel="stylesheet" type="text/css" href="css/rs_calendar_style.css">
+<link rel="stylesheet" type="text/css" href="css/rs_icons.css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="http://secure.rezserver.com/public/js/searchbox/searchbox.min.js"></script>
+ 
+<script>
+var searchbox_options = {
+	refid:6665,
+	environment: "prod",
+	hotel:{
+		enabled:false
+	},
+	car:{
+		enabled:false	
+	},
+	air: {
+		enabled:true,
+		elements: {
+			form: 'air',
+			round_trip: '#air_round_trip',
+			one_way: '#air_one_way',
+			multi_dest: '#air_multi_dest',	
+			adults : '.rs_adults_input',
+			children : '.rs_child_input',			
+			chk_in: '.rs_chk_in, .rs_mobi_in',
+			chk_out: '.rs_chk_out, .rs_mobi_out',
+			chk_in_display: '.rs_mobiin',
+			chk_in1_display: '.rs_mobi1',
+			chk_in2_display: '.rs_mobi2',
+			chk_in3_display: '.rs_mobi3',
+			chk_in4_display: '.rs_mobi4',
+			chk_in5_display: '.rs_mobi5',
+			chk_out_display: '.rs_mobiout',
+			search:".rs_search"	
+		},
+		calendar: {
+			output_format: '<div class="rs_mobi_chk_day">[d]</div><div class="rs_mobi_chk_month">[F]</div>'
+		},
+		autosuggest: {
+			airports: true
+		},
+		select_name:true
+	},
+	vp:{
+		active:true,
+		enabled:false
+	}
+};
+$(document).ready(function() {
+	$('#rs_multi').searchbox(searchbox_options);
+	
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		$("<link/>", {
+		   rel: "stylesheet",
+		   type: "text/css",
+		   href: "css/mobile_search.css"
+		}).appendTo("head");	
+	}
+
+	$('.round-trip').click(function(){
+		$('#air_round_trip').show();
+		$('#air_one_way').hide();
+		$('#air_multi_dest').hide();
+	});
+
+	$('.one-way').click(function(){
+		$('#air_round_trip').hide();
+		$('#air_one_way').show();
+		$('#air_multi_dest').hide();
+	});
+
+	$('.multi-city').click(function(){
+		$('#air_round_trip').hide();
+		$('#air_one_way').hide();
+		$('#air_multi_dest').show();
+		// window.location = 'http://secure.rezserver.com/air/home?refid=6665'
+		// return false;
+	});	
+	var $icons = $('.rs_tabs');
+    	$icons.click(function(){
+       $icons.removeClass('highlight_tab');
+       $(this).addClass('highlight_tab');
+    });
+});
+
+function showMulti(num){
+	var next= num+1;
+	$('.rem_flight'+num).hide();
+	$('.add_flight'+num).hide();
+	$('.air_flight_'+next).slideDown();
+}
+
+function hideMulti(num){
+	var prev= num-1;
+	$('.air_flight_'+num).slideUp();
+	$('.rem_flight'+prev).show();
+	$('.add_flight'+prev).show();		
+}
+ 
+</script>
+
+<!--[if lte IE 8]>	
+	<style type="text/css">
+		.mainWrapper { width:1000px; }
+
+		.mainWrapper .rs_searchbox{ width:960px; }
+
+		.mainWrapper .rs_searchbox .rs_autosuggest, .mainWrapper .rs_searchbox .rs_from, .mainWrapper .rs_searchbox .rs_to { width:95.8%; padding:5px 2%; }
+		.mainWrapper .rs_searchbox .rs_chk_in,
+		.mainWrapper .rs_searchbox .rs_chk_out{ width:95.8%; padding:5px 2%; }
+
+		.mainWrapper .rs_searchbox .rs_products li { width:auto; margin:0 30px 0 0; }
+		.mainWrapper .rs_searchbox .rs_products li.rs_wide_tab { width:auto; }
+
+		.mainWrapper .rs_searchbox h2 { font-size: 21px; }
+		.mainWrapper .rs_searchbox .label { display: block; }
+
+		.mainWrapper .rs_searchbox .rs_date_input_container { position: relative; }
+		.mainWrapper .rs_searchbox .rs_date_input_container input { display: block; }
+
+		.mainWrapper .rs_searchbox .rs_mobi { display: none; }
+
+		.mainWrapper .rs_searchbox .rs_date, .mainWrapper .rs_searchbox .rs_people { width: 23%; }
+		.mainWrapper .rs_searchbox .rs_rooms_row { width: 23%; }
+		.mainWrapper .rs_searchbox .rs_guest_row { width: 23.2%; }
+
+		.mainWrapper .rs_searchbox .rs_chk_out_row { margin-right: 2%; }
+
+		.mainWrapper .rs_searchbox .rs_button_row { width: 160px; }
+		.mainWrapper .rs_searchbox .rs_button_row .rs_search { width: 86%; text-align: left; }
+		.mainWrapper .rs_searchbox .rs_button_row .rs_search_icon { display: inline-block; }
+
+		.mainWrapper .rs_searchbox .rs_advanced_link { width: 48.4%; }
+		.mainWrapper .rs_searchbox .rs_advanced .rs_advanced_col { width: 23%; }
+		.mainWrapper .rs_searchbox .rs_advanced #rs_advanced_stars { width: 23%; }
+		.mainWrapper .rs_searchbox .rs_advanced .blank_title { display: none; }
+		.mainWrapper .rs_searchbox .rs_advanced .rs_advanced_right { display: inline-block; width: 23%; }
+		.mainWrapper .rs_searchbox .rs_advanced .rs_advanced_right .rs_form_row { width: 100%; margin-right: 1%; }
+	</style>
+<![endif]-->
+
+</head>
+<body>
+
+<div class="mainWrapper">
+	<div id="rs_multi" class='rs_searchbox'>
+		<form name="air" class="air rs_air_form">	
+			<h2 class="h2_ind_product">Search for Discount Flights</h2>
+			<div class="rs_air_options">
+				<input type="radio" class="round-trip" name="air-radio" id="round-trip" checked><label for="round-trip">Round Trip</label>
+				<input type="radio" class="one-way" name="air-radio" id="one-way"><label for="one-way">One way</label>
+				<input type="radio" class="multi-city" name="air-radio" id="multi-city"><label for="multi-city">Multi City</label>
+			</div>
+			<div id="air_round_trip">
+				<div class="rs_form_row">
+					<div class="label">Origin</div>
+					<input name="rs_o_city" class="from autosuggest rs_from" value='Enter a City or Airport' onclick='$(this).val("");' autocomplete="off">
+				</div>
+				<div class="rs_form_row rs_no_margin">
+					<div class="label">Destination</div>
+					<input name="rs_d_city" class="to autosuggest rs_to" value='Enter a City or Airport' onclick='$(this).val("");' autocomplete="off">
+				</div>
+				<div class='rs_mobi'>
+					<div class='rs_mobi_date_container rs_mobi_in'>
+						<div class='rs_mobi_title'>Depart</div>
+						<div class='rs_date_chk_in rs_mobiin'>
+							<div class='rs_mobi_chk_day'>Day</div>
+							<div class='rs_mobi_chk_month'>Month</div>
+						</div>
+					</div>
+
+					<div class='rs_mobi_date_container rs_mobi_out'>
+						<div class='rs_mobi_title'>Return</div>
+						<div class='rs_date_chk_out rs_mobiout'>
+							<div class='rs_mobi_chk_day'>Day</div>
+							<div class='rs_mobi_chk_month'>Month</div>
+						</div>
+					</div>
+					<div class='clear'></div>
+
+					<div class='clear'></div>
+				</div>	
+				
+				<div class="rs_form_row rs_date rs_chk_in_row">
+					<div class='rs_date_input_container'>
+						<div class="label">Depart</div>
+						<input name="rs_chk_in" class="rs_chk_in" value="mm/dd/yyyy">
+					</div>
+				</div>	
+
+				<div class="rs_form_row rs_date rs_chk_out_row">
+					<div class='rs_date_input_container'>
+						<div class="label">Return</div>
+						<input name="rs_chk_out" class="rs_chk_out" value="mm/dd/yyyy">
+					</div>
+				</div>
+				
+				<div class="rs_form_row rs_rooms_row">
+					<div class="label">Adults (18+)</div>
+					<select name="rs_adults" class="rs_adults_input pax">
+					</select>
+				</div>
+				<div class="rs_form_row rs_rooms_row">	
+					<div class="label">Children (2-17)</div>				
+					<select name="rs_children" class="rs_child_input pax">
+					</select>
+				</div>
+				<div class="rs_form_row rs_rooms_row rs_no_margin rs_last_time">
+					<div class="label">Cabin Class</div>		
+					<select name="rs_cabin" class="rs_child_input pax">
+						<option value=''>Economy/Coach</option>
+						<option value='Business'>Business</option>
+						<option value='First'>First</option>
+					</select>
+				</div>						
+				<div class="rs_button_row">
+					<button type="submit" class="rs_search">Search <div class="rs_search_icon"></div></button>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div id="air_one_way">
+				<div class="rs_form_row">
+					<div class="label">Origin</div>						
+					<input name="rs_o_city1" class="from autosuggest rs_from" value='Enter a City or Airport' onclick='$(this).val("");' autocomplete="off">
+				</div>
+				<div class="rs_form_row rs_no_margin">
+					<div class="label">Destination</div>
+					<input name="rs_d_city1" class="to autosuggest rs_to" value='Enter a City or Airport' onclick='$(this).val("");' autocomplete="off">
+				</div>	
+				<div class='rs_mobi'>
+					<div class='rs_mobi_date_container rs_mobi_in'>
+						<div class='rs_mobi_title'>Depart</div>
+						<div class='rs_date_chk_in rs_mobi1'>
+							<div class='rs_mobi_chk_day'>Day</div>
+							<div class='rs_mobi_chk_month'>Month</div>
+						</div>
+					</div>
+					<div class='clear'></div>
+
+
+				</div>	
+				<div class="rs_form_row rs_date rs_chk_in_row" style="*float:none;">
+					<div class='rs_date_input_container'>
+						<div class="label">Depart</div>
+						<input name="rs_chk_in1" class="rs_chk_in" value="mm/dd/yyyy">
+					</div>
+				</div>
+				<div class="rs_form_row rs_rooms_row">
+					<div class="label">Adults (18+)</div>
+					<select name="rs_adults" class="rs_adults_input pax">
+					</select>
+				</div>
+				<div class="rs_form_row rs_rooms_row">	
+					<div class="label">Children (2-17)</div>				
+					<select name="rs_children" class="rs_child_input pax">
+					</select>
+				</div>
+				<div class="rs_form_row rs_rooms_row rs_no_margin rs_last_time">
+					<div class="label">Cabin Class</div>		
+					<select name="rs_cabin" class="rs_child_input pax">
+						<option value=''>Economy/Coach</option>
+						<option value='Business'>Business</option>
+						<option value='First'>First</option>
+					</select>
+				</div>					
+				<div class="rs_button_row">
+					<button type="submit" class="rs_search rs_oneway_search">Search <div class="rs_search_icon"></div></button>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div id="air_multi_dest">
+				<div class="air_multi_seperator">
+					<h3>Flight 1</h3>
+					<div class="rs_form_row">
+						<div class="label">Origin</div>
+						<input name="rs_o_city1" class="from autosuggest rs_from" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class="rs_form_row rs_no_margin">
+						<div class="label">Destination</div>
+						<input name="rs_d_city1" class="to autosuggest rs_to" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class='rs_mobi'>
+						<div class='rs_mobi_date_container rs_mobi_in'>
+							<div class='rs_mobi_title'>Check-in</div>
+							<div class='rs_date_chk_in rs_mobi1'>
+								<div class='rs_mobi_chk_day'>Day</div>
+								<div class='rs_mobi_chk_month'>Month</div>
+							</div>
+						</div>
+						<div class='clear'></div>
+					</div>
+						
+					<div class="rs_form_row rs_date rs_chk_in_row">
+						<div class='rs_date_input_container'>
+							<div class="label">Depart</div>
+							<input name="rs_chk_in1" class="rs_chk_in" value="Check In">
+						</div>
+					</div>	
+				</div>
+				
+				<div class="air_multi_seperator">
+					<h3>Flight 2</h3>
+					<div class="rs_form_row">
+						<div class="label">Origin</div>
+						<input name="rs_o_city2" class="from autosuggest rs_from" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class="rs_form_row rs_no_margin">
+						<div class="label">Destination</div>
+						<input name="rs_d_city2" class="to autosuggest rs_to" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class='rs_mobi'>
+						<div class='rs_mobi_date_container rs_mobi_in'>
+							<div class='rs_mobi_title'>Check-in</div>
+							<div class='rs_date_chk_in rs_mobi2'>
+								<div class='rs_mobi_chk_day'>Day</div>
+								<div class='rs_mobi_chk_month'>Month</div>
+							</div>
+						</div>
+						<div class='clear'></div>
+					</div>
+						
+					<div class="rs_form_row rs_date rs_chk_in_row">
+						<div class='rs_date_input_container'>
+							<div class="label">Depart</div>
+							<input name="rs_chk_in2" class="rs_chk_in" value="Check In">
+						</div>
+					</div>	
+					<div class="rs_form_row">
+						<span class="add_rem_flight add_flight2" onClick="showMulti(2)">+ Add Flight</span>
+					</div>
+			
+				</div>
+			
+				<div class="air_multi_seperator air_flight_3">
+					<h3>Flight 3</h3>
+					<div class="rs_form_row">
+						<div class="label">Origin</div>
+						<input name="rs_o_city3" class="from autosuggest rs_from" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class="rs_form_row rs_no_margin">
+						<div class="label">Destination</div>
+						<input name="rs_d_city3" class="to autosuggest rs_to" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class='rs_mobi'>
+						<div class='rs_mobi_date_container rs_mobi_in'>
+							<div class='rs_mobi_title'>Check-in</div>
+							<div class='rs_date_chk_in rs_mobi3'>
+								<div class='rs_mobi_chk_day'>Day</div>
+								<div class='rs_mobi_chk_month'>Month</div>
+							</div>
+						</div>
+						<div class='clear'></div>
+					</div>
+					<div class="rs_form_row rs_date rs_chk_in_row">
+						<div class='rs_date_input_container'>
+							<div class="label">Depart</div>
+							<input name="rs_chk_in3" class="rs_chk_in" value="Check In">
+						</div>
+					</div>	
+					<div class="rs_form_row">
+						<span class="add_rem_flight add_flight3" onClick="showMulti(3)">+ Add Flight</span>		
+					</div>	
+					<div class="rs_form_row rs_no_margin">
+						<span class="add_rem_flight rem_flight3" onClick="hideMulti(3)">- Remove Flight</span>
+					</div>
+				</div>
+				<div class="rs_chk_in3_display"></div>
+				<div class="air_multi_seperator air_flight_4">
+					<h3>Flight 4</h3>
+					<div class="rs_form_row">
+						<div class="label">Origin</div>
+						<input name="rs_o_city4" class="from autosuggest rs_from" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class="rs_form_row rs_no_margin">
+						<div class="label">Destination</div>
+						<input name="rs_d_city4" class="to autosuggest rs_to" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class='rs_mobi'>
+						<div class='rs_mobi_date_container rs_mobi_in'>
+							<div class='rs_mobi_title'>Check-in</div>
+							<div class='rs_date_chk_in rs_mobi4'>
+								<div class='rs_mobi_chk_day'>Day</div>
+								<div class='rs_mobi_chk_month'>Month</div>
+							</div>
+						</div>
+						<div class='clear'></div>
+					</div>
+					<div class="rs_form_row rs_date rs_chk_in_row">
+						<div class='rs_date_input_container'>
+							<div class="label">Depart</div>
+							<input name="rs_chk_in4" class="rs_chk_in" value="Check In">
+						</div>
+					</div>	
+					<div class="rs_form_row">
+						<span class="add_rem_flight add_flight4" onClick="showMulti(4)">+ Add Flight</span>			
+					</div>
+					<div class="rs_form_row rs_no_margin">
+						<span class="add_rem_flight rem_flight4" onClick="hideMulti(4)">- Remove Flight</span>
+					</div>
+				</div>
+			
+				<div class="air_multi_seperator air_flight_5">
+					<h3>Flight 5</h3>
+					<div class="rs_form_row">
+						<div class="label">Origin</div>
+						<input name="rs_o_city5" class="from autosuggest rs_from" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class="rs_form_row rs_no_margin">
+						<div class="label">Destination</div>
+						<input name="rs_d_city5" class="to autosuggest rs_to" value='City or Airport Name' onclick='$(this).val("");' autocomplete="off">
+					</div>
+					<div class='rs_mobi'>
+						<div class='rs_mobi_date_container rs_mobi_in'>
+							<div class='rs_mobi_title'>Check-in</div>
+							<div class='rs_date_chk_in rs_mobi5'>
+								<div class='rs_mobi_chk_day'>Day</div>
+								<div class='rs_mobi_chk_month'>Month</div>
+							</div>
+						</div>
+						<div class='clear'></div>
+					</div>
+					<div class="rs_form_row rs_date rs_chk_in_row">
+						<div class='rs_date_input_container'>
+							<div class="label">Depart</div>
+							<input name="rs_chk_in5" class="rs_chk_in" value="Check In">
+						</div>
+					</div>	
+					
+					<div class="rs_form_row">
+						<span class="add_rem_flight rem_flight5" onClick="hideMulti(5)">- Remove Flight</span>
+					</div>
+	
+				</div>
+				<div class="rs_form_row rs_rooms_row">
+					<div class="label">Adults (18+)</div>
+					<select name="rs_adults" class="rs_adults_input pax">
+					</select>
+				</div>
+				<div class="rs_form_row rs_rooms_row">	
+					<div class="label">Children (2-17)</div>				
+					<select name="rs_children" class="rs_child_input pax">
+					</select>
+				</div>
+				<div class="rs_form_row rs_rooms_row rs_no_margin rs_last_time">
+					<div class="label">Cabin Class</div>		
+					<select name="rs_cabin" class="rs_child_input pax">
+						<option value=''>Economy/Coach</option>
+						<option value='Business'>Business</option>
+						<option value='First'>First</option>
+					</select>
+				</div>							
+				<div class="clear"></div>
+				<div class="rs_button_row">
+					<button type="submit" class="rs_search">Search <div class="rs_search_icon"></div></button>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>
+</div>
+
+</body>
+</html>

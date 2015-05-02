@@ -1,0 +1,22 @@
+@font-face{
+	font-family:'rs';
+	src: url('../icons/rs.eot');
+	src:
+		url('../icons/rs.woff') format('woff'),
+		url('../icons/rs.svg#rs') format('svg'),
+		url('../icons/rs.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face{
+	font-family:'rs_car';
+	src: url('icons/rs_car.eot');
+	src:
+		url('../icons/rs_car.woff') format('woff'),
+		url('../icons/rs_car.svg#rs') format('svg'),
+		url('../icons/rs_car.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+.rs_icon { font-family: 'rs'; font-weight: 400 !important; font-style: normal !important; display: inline-block; }
+.rs_car_icon { font-family: 'rs_car'; font-weight: 400 !important; font-style: normal !important; display: inline-block; }
