@@ -10,7 +10,7 @@ var searchbox_options = {
 	refid:6665,
 	environment: "prod",
 	hotel:{
-		enabled:false
+                enabled:false,		
 	},
 	car:{
 		enabled:false	
@@ -50,7 +50,7 @@ var searchbox_options = {
 };
 $(document).ready(function() {
 	$('#rs_multi').searchbox(searchbox_options);
-	
+	//$('#rs_hotel').searchbox(searchbox_options);
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		$("<link/>", {
 		   rel: "stylesheet",
@@ -272,7 +272,6 @@ function hideMulti(num){
                     <button class="btn btn-primary btn-lg rs_search  rs_oneway_search" type="submit">Search for Flights</button>
                 </div>
             </div>
-        </div>
-        
+        </div>        
     </form>
 </div>

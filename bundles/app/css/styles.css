@@ -1004,7 +1004,7 @@ ul.slimmenu li a {
   font-size: 15px;
   text-transform: uppercase;
   font-family: 'Roboto', arial, helvetica, sans-serif;
-  color: #737373;
+  color: #fff;
   -webkit-transition: background-color 0.17s ease-out;
   -moz-transition: background-color 0.17s ease-out;
   -o-transition: background-color 0.17s ease-out;
@@ -1016,7 +1016,7 @@ ul.slimmenu li.slimmenu-sub-menu a {
 }
 ul.slimmenu li.active > a,
 ul.slimmenu li:hover > a {
-  background: #ed8323;
+  background: #008EC4;
   color: #fff;
 }
 ul.slimmenu li.active .slimmenu-sub-collapser > i,
