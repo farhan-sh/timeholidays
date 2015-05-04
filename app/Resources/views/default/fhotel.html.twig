@@ -1,0 +1,100 @@
+<script>
+var searchbox_options_fhotel = {
+	refid:6665,
+	environment: "prod",
+	hotel:{
+		enabled:false
+	},
+	car:{
+		enabled:false	
+	},
+	air: {
+		enabled:false
+	},
+	vp:{
+		active:true,
+		elements:{
+			chk_in:".rs_chk_in_vp, .rs_chk_in_calendar, .rs_date_chk_in",
+			chk_out:".rs_chk_out_vp, .rs_chk_out_calendar, .rs_date_chk_out",
+			chk_in_display:".rs_date_chk_in",
+			chk_out_display:".rs_date_chk_out",				
+			search:".rs_search_fhotel"
+		},
+		calendar:{
+			output_format:"<div class='rs_mobi_chk_day'>[d]</div><div class='rs_mobi_chk_month'>[F]</div>"
+		},
+		select_name:true
+	}
+};
+$(document).ready(function() {
+	$('#rs_fhotel').searchbox(searchbox_options_fhotel);
+	
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		$("<link/>", {
+		   rel: "stylesheet",
+		   type: "text/css",
+		   href: "css/mobile_search.css"
+		}).appendTo("head");	
+	}
+});
+
+
+ 
+</script>
+<div id="rs_fhotel" class='rs_searchbox'>
+     <form name="vp" class="rs_vp_form">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+                    <label>From</label>
+                    <input name="rs_o_city" class="from rs_autosuggest rs_from form-control" placeholder='Enter a City or Airport' onclick='$(this).val("");' autocomplete="off">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+                    <label>To</label>
+                    <input name="rs_d_city" class="to rs_autosuggest rs_to form-control" placeholder='Enter a City or Airport' onclick='$(this).val("");' autocomplete="off">
+                </div>
+            </div>     
+        </div> 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-daterange" data-date-format="mm/dd/yyyy">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                <label>Check-in</label>                                
+                                <input name="rs_chk_in" class="rs_chk_in_vp form-control" value="mm/dd/yyyy">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-highlight"></i>
+                                <label>Check-out</label>                                
+                                <input name="rs_chk_out" class="rs_chk_out_vp form-control" value="mm/dd/yyyy">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-group-lg form-group-select-plus">
+                                <label>Adults(18+)</label>
+                               <select name="rs_adults" class="rs_adults_input pax form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-group-lg form-group-select-plus">
+                                <label>Children (0-17)</label>
+                                <select name="rs_children" class="rs_child_input pax form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group form-group-lg form-group-select-plus">
+                                <label>Rooms</label>
+                                <select class="rooms form-control" name="rs_rooms"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>             
+        </div>
+        <button type="submit" class="rs_search_fhotel btn btn-primary btn-lg" title='Search'>Search for Flight + Hotels<div class="rs_search_icon"></div></button>
+    </form>
+</div>
