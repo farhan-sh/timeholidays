@@ -1,0 +1,29 @@
+{% extends 'admin/base.html.twig'%}
+{%block contents%}
+      
+<div class="full-center well">
+    <div class="container">
+        <div class="row">
+            {% for flashMessage in app.session.flashbag.get('invalid') %}
+                <div class="col-md-4 col-md-offset-4" style="color:red">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}  
+            <div class="col-md-4 col-md-offset-4">
+                <h3 class="mb15">Login</h3>
+                <form action="{{path('login')}}" method="post">
+                    <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                        <label>Username</label>
+                        <input class="form-control" type="text" name="username"/>
+                    </div>
+                    <div class="form-group  form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                        <label>Password</label>
+                        <input class="form-control" type="password" name="password"/>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="Sign in" name="submit"/>
+                </form>
+            </div>         
+        </div>
+    </div>
+</div>
+{% endblock%}

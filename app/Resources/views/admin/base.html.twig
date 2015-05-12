@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <head>        
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta name="keywords" content="Time Holidays" />
+        <meta name="description" content="Time Holidays">
+        <meta name="author" content="Tsoy">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Time Holidays{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheets" href="{{ asset('bundles/app/css/style2.css')}}" />             
+            <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600' rel='stylesheet' type='text/css'>           
+            <link rel="stylesheet" href="{{asset('bundles/app/css/bootstrap.css')}}"/>
+            <link rel="stylesheet" href="{{asset('bundles/app/css/font-awesome.css')}}">
+            <link rel="stylesheet" href="{{asset('bundles/app/css/icomoon.css')}}">
+            <link rel="stylesheet" href="{{asset('bundles/app/css/styles.css')}}">
+            <link rel="stylesheet" href="{{asset('bundles/app/css/mystyles.css')}}">
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{asset('bundles/app/js/modernizr.js')}}"></script>            
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />               
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    <body>        
+            <!-- FACEBOOK WIDGET -->
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- /FACEBOOK WIDGET -->
+    <div class="global-wrap">          
+        {% block contents%}
+        {% endblock %}    
+    </div>
+    
+        <script src="{{asset('bundles/app/js/bootstrap.js')}}"></script>
+        <script src="{{asset('bundles/app/js/slimmenu.js')}}"></script>
+        <script src="{{asset('bundles/app/js/bootstrap-datepicker.js')}}"></script>
+        <script src="{{asset('bundles/app/js/bootstrap-timepicker.js')}}"></script>
+        <script src="{{asset('bundles/app/js/nicescroll.js')}}"></script>
+        <script src="{{asset('bundles/app/js/dropit.js')}}"></script>
+        <script src="{{asset('bundles/app/js/ionrangeslider.js')}}"></script>
+        <script src="{{asset('bundles/app/js/icheck.js')}}"></script>
+        <script src="{{asset('bundles/app/js/fotorama.js')}}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="{{asset('bundles/app/js/typeahead.js')}}"></script>
+        <script src="{{asset('bundles/app/js/card-payment.js')}}"></script>
+        <script src="{{asset('bundles/app/js/magnific.js')}}"></script>
+        <script src="{{asset('bundles/app/js/owl-carousel.js')}}"></script>
+        <script src="{{asset('bundles/app/js/fitvids.js')}}"></script>
+        <script src="{{asset('bundles/app/js/tweet.js')}}"></script>
+        <script src="{{asset('bundles/app/js/countdown.js')}}"></script>
+        <script src="{{asset('bundles/app/js/gridrotator.js')}}"></script>
+        <script src="{{asset('bundles/app/js/custom.js')}}"></script>
+    
     </body>
 </html>
