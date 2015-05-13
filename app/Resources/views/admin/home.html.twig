@@ -34,23 +34,24 @@
                 <div class="col-md-3">
                     <aside class="user-profile-sidebar">                       
                         <ul class="list user-profile-nav">
-                            <li><a href="user-profile.html"><i class="fa fa-user"></i>Overview</a>
+                            <li><a href="{{path('dashboard')}}"><i class="fa fa-user"></i>Dashboard</a>
                             </li>
-                            <li><a href="user-profile-settings.html"><i class="fa fa-cog"></i>Settings</a>
+                            <li><a href="{{path('hpsetting')}}"><i class="fa fa-cog"></i>Home Page Setting</a>
                             </li>
-                            <li><a href="user-profile-photos.html"><i class="fa fa-camera"></i>My Travel Photos</a>
+                            <!--<li><a href="user-profile-photos.html"><i class="fa fa-camera"></i>My Travel Photos</a>
                             </li>
                             <li><a href="user-profile-booking-history.html"><i class="fa fa-clock-o"></i>Booking History</a>
                             </li>
                             <li><a href="user-profile-cards.html"><i class="fa fa-credit-card"></i>Credit/Debit Cards</a>
                             </li>
                             <li><a href="user-profile-wishlist.html"><i class="fa fa-heart-o"></i>Wishlist</a>
-                            </li>
+                            </li>-->
                         </ul>
                     </aside>
                 </div>
                 <div class="col-md-9">
-                   
+                    {% block dash_contents%}
+                    {% endblock dash_contents%}
                     <div id="map-canvas" style="width:100%; height:400px;"></div>
                 </div>
             </div>

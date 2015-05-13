@@ -1,0 +1,21 @@
+{% extends 'admin/home.html.twig'%}
+{%block dash_contents%}
+    {% for flashMessage in app.session.flashbag.get('ferror') %}
+                <div class="col-md-12 text-center" style="color:red">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}  
+    <div class="col-md-12">        
+        <form method="post" enctype="multipart/form-data" action="{{path('hpsetting')}}">
+            <div class="form-group">
+                <label><input type="radio" name="hmedia" value="0"/>Select Video</label>
+                <input class="form-control" type="file" name="video"/>
+            </div>
+            <div class="form-group  form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                <label><input type="radio" name="hmedia" value="1"/>Select Image</label>
+                <input class="form-control" type="file" name="image"/>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Done" name="submit"/>
+        </form>
+    </div> 
+{% endblock dash_contents%}

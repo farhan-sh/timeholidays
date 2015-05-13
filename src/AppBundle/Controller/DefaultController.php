@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class DefaultController extends Controller
 {
@@ -35,7 +36,7 @@ class DefaultController extends Controller
         $session=$request->getSession();
         if($session->get("adminUser")&&$session->get("adminPassword"))
         {
-            return $this->render("admin/home.html.twig");
+            return $this->render("admin/dashboard.html.twig");
         }
         if($request->getMethod()=="POST" && $request->request->get("submit"))
         {
@@ -43,7 +44,7 @@ class DefaultController extends Controller
             {
                 $session->set("adminUser",$request->request->get("username"));
                 $session->set("adminPassword",$request->request->get("password"));
-                return $this->render("admin/home.html.twig");
+                return $this->render("admin/dashboard.html.twig");
             }
             else
             {                
@@ -61,5 +62,76 @@ class DefaultController extends Controller
         $session->clear();
         return $this->forward("AppBundle:Default:Login");
         
+    }
+    /**
+     * @route("/dashboard",name="dashboard")
+     */
+    public function dashboardAction(Request $request)
+    {
+        $session=$request->getSession();
+        if($session->get("adminUser")&&$session->get("adminPassword"))
+        {
+            return $this->render("admin/dashboard.html.twig");
+        }
+        else
+        {
+            return $this->forward("AppBundle:Default:Login");
+        }
+    }
+    /**
+     * @route("/hpsetting",name="hpsetting")
+     */
+    public function hpsettingAction(Request $request)
+    {
+        $session=$request->getSession();
+        if($session->get("adminUser")&&$session->get("adminPassword"))
+        {
+            $data=$request->request->all();           
+            if($data)
+            {     
+                
+                if($data["hmedia"]==1)
+                {
+                        $file=new Assert\Image();
+                        $file->mimeTypesMessage="Image File Type not Allowed ";                      
+                        $errorList = $this->get('validator')->validate(
+                        $_FILES['image']["tmp_name"],
+                        $file
+                     );
+                    if (0 === count($errorList))
+                    {
+
+                    } 
+                    else
+                    {                
+                        $this->addFlash('ferror', $errorList[0]->getMessage());
+
+                    }
+                }   
+                if($data["hmedia"]==0)
+                {
+                        $file=new Assert\File(array("video/mp4","video/ogg","video/3gpp"));
+                        $file->mimeTypesMessage="Media File Type Not Allowed";
+                        $errorList = $this->get('validator')->validate(
+                        $_FILES['video']["tmp_name"],
+                        $file
+                     );
+                    if (0 === count($errorList))
+                    {
+
+                    } 
+                    else
+                    {                
+                        $this->addFlash('ferror', $errorList[0]->getMessage());
+
+                    }
+                }
+            }           
+            return $this->render("admin/hpsetting.html.twig");
+        }
+        else
+        {
+            return $this->forward("AppBundle:Default:Login");
+        }
     }
 }
