@@ -14,7 +14,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        $conn = $this->get('database_connection');
+        $media=$conn->prepare("select * from home_page_setting where active=1");
+        $media->execute();
+        $data=$media->fetchAll();
+        return $this->render('default/index.html.twig',array("data"=>$data));
     }
     
     /**
@@ -83,6 +87,7 @@ class DefaultController extends Controller
      */
     public function hpsettingAction(Request $request)
     {
+        $conn = $this->get('database_connection');  
         $session=$request->getSession();
         if($session->get("adminUser")&&$session->get("adminPassword"))
         {
@@ -93,31 +98,42 @@ class DefaultController extends Controller
                 if($data["hmedia"]==1)
                 {
                         $file=new Assert\Image();
-                        $file->mimeTypesMessage="Image File Type not Allowed ";                      
+                        $file->mimeTypesMessage="Image File Type not Allowed ";                         
                         $errorList = $this->get('validator')->validate(
                         $_FILES['image']["tmp_name"],
                         $file
                      );
                     if (0 === count($errorList))
-                    {
-
+                    {                                              
+                        $hps = $conn->prepare("update home_page_setting set active=0");
+                        $hps->execute();                                                
+                        $hps = $conn->prepare("update home_page_setting set file='".$_FILES['image']['name']."',active=1 where type=0");
+                        $hps->execute();                                                
+                        move_uploaded_file($_FILES['image']['tmp_name'], $this->get("kernel")->getRootDir()."/../bundles/app/media/".$_FILES['image']['name']);
+                        $this->addFlash('ferror', "Image Added and Shown on Home Page Successfully");
                     } 
                     else
-                    {                
+                    {                         
                         $this->addFlash('ferror', $errorList[0]->getMessage());
 
                     }
                 }   
                 if($data["hmedia"]==0)
                 {
-                        $file=new Assert\File(array("video/mp4","video/ogg","video/3gpp"));
+                        $file=new Assert\File(array("mimeTypes"=>array("video/mp4","video/ogg","video/3gpp")));
                         $file->mimeTypesMessage="Media File Type Not Allowed";
                         $errorList = $this->get('validator')->validate(
                         $_FILES['video']["tmp_name"],
                         $file
-                     );
+                     );                        
                     if (0 === count($errorList))
-                    {
+                    {                       
+                        $hps = $conn->prepare("update home_page_setting set active=0");
+                        $hps->execute();                                                
+                        $hps = $conn->prepare("update home_page_setting set file='".$_FILES['video']['name']."',active=1 where type=1");
+                        $hps->execute();                                                
+                        move_uploaded_file($_FILES['video']['tmp_name'], $this->get("kernel")->getRootDir()."/../bundles/app/media/".$_FILES['video']['name']);
+                        $this->addFlash('ferror', "Video Added and Shown on Home Page Successfully");
 
                     } 
                     else

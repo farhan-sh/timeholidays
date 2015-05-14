@@ -4,15 +4,16 @@
         <div class="top-area show-onload">
             <div class="bg-holder full">
                  <div class="bg-mask"></div>
-                <div class="bg-img" style="background-image:url(img/2048x1365.png);"></div>
-                <video class="bg-video hidden-sm hidden-xs" preload="auto" autoplay="true" loop="loop" muted="muted" poster="<?php echo base_url()."assets/" ?>img/video-bg.jpg">                    
-                     
-                    <source src="<?php echo base_url()."assets/" ?>media/video.mp4" type="video/mp4" />
-                </video>            
+                <div class="bg-img" style="background-image:url(img/2048x1365.png);"></div>               
+                {% for d in data if (d.type==1 and d.active==1)%}
+                    <video class="bg-video hidden-sm hidden-xs" preload="auto" autoplay="true" loop="loop" muted="muted" poster="">                    
+                        <source src="bundles/app/media/{{d.file}}" type="video/mp4" />
+                    </video>                      
+                {% endfor %}
                 <div class="bg-front full-height bg-front-mob-rel">                   
                     <div class="container full-height">                        
                         <div class="rel full-height">                            
-                            <div class="tagline visible-lg" id="tagline"><span>It's time to</span>
+                            <!--<div class="tagline visible-lg" id="tagline"><span>It's time to</span>
                                 <ul>
                                     <li>live</li>
                                     <li>have fun</li>
@@ -26,7 +27,7 @@
                                     <li class="active">discover</li>
                                     <li>play</li>
                                 </ul>
-                            </div>
+                            </div>-->
                             <div class="search-tabs search-tabs-bg search-tabs-bottom mb50">
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs" id="myTab">
