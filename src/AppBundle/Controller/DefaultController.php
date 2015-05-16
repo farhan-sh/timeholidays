@@ -150,4 +150,39 @@ class DefaultController extends Controller
             return $this->forward("AppBundle:Default:Login");
         }
     }
+    /**
+     * @route("/about",name="about")
+     */
+    public function aboutAction(Request $request)
+    {
+       return $this->render("default/about.html.twig"); 
+    }
+    /**
+     * @route("/terms",name="terms")
+     */
+    public function termsAction(Request $request)
+    {
+        return $this->render("default/terms.html.twig");
+    }
+    /**
+     * @route("/privacy",name="privacy")
+     */
+    public function privacyAction(Request $request)
+    {
+        return $this->render("default/privacy.html.twig");
+    }
+    /**
+     * @route("/paymethods",name="paymethods")
+     */
+    public function paymethodsAction(Request $request)
+    {
+        
+    }
+    /**
+     * @route("/contact",name="contact")
+     */
+    public function contactAction(Request $request)
+    {
+        return $this->render("default/contact.html.twig");
+    }
 }

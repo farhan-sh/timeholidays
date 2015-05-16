@@ -3,11 +3,13 @@
         <!-- TOP AREA -->
         <div class="top-area show-onload">
             <div class="bg-holder full">
-                 <div class="bg-mask"></div>
-                <div class="bg-img" style="background-image:url(img/2048x1365.png);"></div>               
+                 <div class="bg-mask"></div>                 
+                {% for d in data if (d.type==0 and d.active==1)%}
+                    <div class="bg-img" style="background-image:url(bundles/app/media/{{d.file}});"></div>                                      
+                {% endfor %}
                 {% for d in data if (d.type==1 and d.active==1)%}
                     <video class="bg-video hidden-sm hidden-xs" preload="auto" autoplay="true" loop="loop" muted="muted" poster="">                    
-                        <source src="bundles/app/media/{{d.file}}" type="video/mp4" />
+                        <source src="{{asset('bundles/app/media/')}}{{d.file}}" type="video/mp4" />
                     </video>                      
                 {% endfor %}
                 <div class="bg-front full-height bg-front-mob-rel">                   
