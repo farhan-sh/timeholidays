@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block contents %} 
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <div class="gap"></div>
+        <div class="container">            
+            <div class="row">
+                <h2 class="h2">Payment Methods</h2>
+                <div class="gap"></div>
+                <div class="col-md-7">
+                    <p>
+                       We accept payment through following methods.
+                    </p>                   
+                    <ul>
+                        <li>Visa Debit/Credit Card</li>
+                        <li>Master Card</li>
+                        <li>American Express</li>
+                        <li>PayPal</li>
+                        <li>Direct Bank Deposit</li>
+                        <li>Bank to Bank Transfer</li>                        
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <aside class="sidebar-right">
+                        <ul class="address-list list">
+                            <li>
+                                <img src="{{asset('bundles/app/img/payment.png')}}" style="height: 120px"/>
+                            <li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <div class="gap"></div>
+        </div>
+         <div class="gap"></div>
+{% endblock %}

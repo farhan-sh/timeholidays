@@ -176,7 +176,7 @@ class DefaultController extends Controller
      */
     public function paymethodsAction(Request $request)
     {
-        
+        return $this->render("default/payment.html.twig");
     }
     /**
      * @route("/contact",name="contact")
